@@ -20,7 +20,7 @@ public abstract class Item { // abstract: 추상 클래스로 보통 상속 목�
 
     private String name;
     private int price;
-    private int sockQuantity;
+    private int stockQuantity;
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
@@ -31,14 +31,14 @@ public abstract class Item { // abstract: 추상 클래스로 보통 상속 목�
       엔티티 자체가 해결할 수 있는 것들은 엔티티 안에 비즈니스 로직을 넣는게 좋다. = 객체 지향!
      */
     public void addStock(int quantity) {
-        this.sockQuantity += quantity;
+        this.stockQuantity += quantity;
     }
 
     public void removeStock(int quantity) {
-        int restStock = this.sockQuantity - quantity;
+        int restStock = this.stockQuantity - quantity;
         if (restStock < 0) {
             throw new NotEnoughStockException("need more stock");
         }
-        this.sockQuantity -= quantity;
+        this.stockQuantity -= quantity;
     }
 }
